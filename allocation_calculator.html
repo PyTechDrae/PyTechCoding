@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Profit First Calculator</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900&display=swap" rel="stylesheet"> 
+        <script src="https://kit.fontawesome.com/4374c3e152.js"></script>
+        <script  src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <style>
+                
+                .bodyval{
+                    font-family:'Roboto', sans-serif 700;
+                }
+                
+                h1{
+                    color:   #134576   ;
+                }
+                h4{
+                    color:   #134576   ;
+                }
+                
+                .col{
+                    padding-left:5px;
+                    padding-top:10px;
+                }
+                
+                .page_header{
+                    padding: 18px 0px 25px;
+                }
+                
+                .form-group{
+                    color:  #134576 ;
+                }
+                
+                .header_open{
+                    background: #18af31;  /* fallback for old browsers */
+                    background: -webkit-linear-gradient(to right, #f5af19, #f12711);  /* Chrome 10-25, Safari 5.1-6 */
+                    background: linear-gradient(to right, #f5af19, #f12711); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+                
+                }
+                .header_closed{
+                    background: #56ab2f;  /* fallback for old browsers */
+                    background: -webkit-linear-gradient(to right, #a8e063, #56ab2f);  /* Chrome 10-25, Safari 5.1-6 */
+                    background: linear-gradient(to right, #a8e063, #56ab2f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+                
+                
+                }
+                
+                .header_broken{
+                    background: #F00000;  /* fallback for old browsers */
+                    background: -webkit-linear-gradient(to right, #DC281E, #F00000);  /* Chrome 10-25, Safari 5.1-6 */
+                    background: linear-gradient(to right, #DC281E, #F00000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+                    color:white;
+                }
+                
+                
+        </style>
+    </head>
+    <body class='bodyval'>
+        <div class="container">
+
+                <div class="page_header" >
+                    <div class="d-flex justify-content-center" >
+                        <h1>Profit First Allocation Calculator</h1>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col">
+                        <h4>Income</h4>
+                        <div id = 'income'class="header_open rounded-lg" >
+                            <div class="row" style='padding:0px 15px;'><b>$<span id = 'revenue'class= 'revenue' type='number'>0</b></span></div>
+                            <div class="row " style='padding:15px 15px;'><span class = 'subheading'>Real Revenue</span> </div>
+                        </div>
+                        <form>
+                            <div class="form-group">
+                                <label class = 'label' for="formGroupExampleInput"><strong>INCOME RECEIVED</strong></label>
+                                <input id = 'user_income'  type="number" class="form-control form-control-lg  border border-info clearFields" id="formGroupExampleInput" placeholder="0">
+                            </div>
+                            <div class="form-group">
+                                <label  class = 'label' for="formGroupExampleInput2"><b>LESS MATS & SUBS</b></label>
+                                <input id = 'expenses' type="number" class="form-control form-control-lg border border-info clearFields" id="formGroupExampleInput2" placeholder="0">
+                                <label for="formGroupExampleInput2">(Materials & Subcontractors)</label>
+                            </div>
+                        </form>
+                    </div>
+                    
+                
+                    <div class="col">
+                        <h4>Allocations</h4>
+                        <div id= 'allocations' class="header_open rounded-lg">
+                            <div class="row" style='padding:0px 15px;'>
+                                <span class= 'revenue' type='number'><b><span id = 'rev_percentage'>100</span>%</b></span>
+                            </div>
+                            <div id = 'remaining_al' class="row " type='text' style='padding:15px 15px;'>Remaining</div>
+                        </div>
+                        <form>
+                            <div class="form-group">
+                                <label class = 'label' for="formGroupExampleInput"><strong>PROFIT %</strong></label>
+                                <input id = 'profit_percentage' type="number" class="form-control form-control-lg border border-info clearFields" id="formGroupExampleInput" placeholder="0">
+                            </div>
+                            <div class="form-group">
+                                <label class = 'label' for="formGroupExampleInput"><strong>OWNERS PAY %</strong></label>
+                                <input id = 'owner_percentage' type="number" class="form-control form-control-lg border border-info clearFields" id="formGroupExampleInput" placeholder="0">
+                            </div>
+                            <div class="form-group">
+                                <label class = 'label' for="formGroupExampleInput"><strong>TAX %</strong></label>
+                                <input id = 'tax_percentage' type="number" class="form-control form-control-lg border border-info clearFields" id="formGroupExampleInput" placeholder="0">
+                            </div>
+                            <div class="form-group">
+                                <label class = 'label' for="formGroupExampleInput"><strong>OPERATING EXPENSES %</strong></label>
+                                <input id = 'expense_percentage' type="number" class="form-control form-control-lg border border-info clearFields" id="formGroupExampleInput" placeholder="0">
+                            </div>
+                            <div class="form-group">
+                                <label class = 'label' for="formGroupExampleInput2"><b>IF IN DOUBT... %</b></label>
+                                <input id = 'doubt_percentage' type="number" class="form-control form-control-lg border border-info clearFields" id="formGroupExampleInput2" placeholder="0">
+                            </div>
+                        </form>
+                    </div>
+                    
+                
+                    <div class="col">
+                        <h4>Results</h4>
+                        <div id = 'results' class="header_open rounded-lg" >
+                            <div class="row" style='padding:0px 15px;'><b>$<span id = 'results_amount' class= 'revenue'>0</b></span></div>
+                            <div class="row " style='padding:15px 15px;'><span id = 'remaining_res'class = 'subheading'>Remaining</span> </div>
+                        </div>
+                        <form>
+                            <div class="form-group">
+                                <div class='res font-weight-bolder'><b>$</b><span id = 'r_profit'><b>0</b></span></div>
+                                <label class = 'label' for="formGroupExampleInput">Into 'Profit' Account</label>
+                            </div>
+                            <div class="form-group">
+                                <div class='res font-weight-bolder'><b>$</b><span id = 'r_owner'><b>0</b></span></div>
+                                <label class = 'label' for="formGroupExampleInput">Into 'Owners Pay' Account</label>
+                            </div>
+                            <div class="form-group">
+                                <div class='res font-weight-bolder'><b>$</b><span id= 'r_tax'><b>0</b></span></div>
+                                <label class = 'label' for="formGroupExampleInput">Into 'Tax' Account</label>
+                            </div>
+                            <div class="form-group">
+                                <div class='res font-weight-bolder'><b>$</b><span id='r_exp'><b>0</b></span></div>
+                                <label class = 'label' for="formGroupExampleInput2">Into 'Operating Expenses' Account</label>
+                            </div>
+                            <div class="form-group">
+                                <div class='res font-weight-bolder'><b>$</b><span id='r_doubt'><b>0</b></span></div>
+                                <label class = 'label' for="formGroupExampleInput2">Into 'If in Doubt' Account</label>
+                            </div>
+                        </form>
+                        <button type="button" class="btn btn-info btn-lg btn-block" onclick='reset()'><i class="fas fa-sync"></i>  RESET</button>
+                    </div>
+                
+                </div>
+                
+        </div> 
+        
+    </body>
+</html><script  src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+    crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script>
+                const userIncome = document.getElementById('user_income');
+                userExpenses = document.getElementById('expenses');
+                userRevenue = document.getElementById('revenue');
+                profitPercent = document.getElementById('profit_percentage');
+                ownerPercent = document.getElementById('owner_percentage');
+                taxPercent = document.getElementById('tax_percentage');
+                opsPercent = document.getElementById('expense_percentage');
+                doubtPercent = document.getElementById('doubt_percentage');
+                allocationPercent = document.querySelector('#rev_percentage');
+                remainingAllocations = document.querySelector('#remaining_al');
+                resultsAmount =document.querySelector('#results_amount');
+                resultsProfit =document.querySelector('#r_profit');
+                resultsOwner =document.querySelector('#r_owner');
+                resultsTax =document.querySelector('#r_tax');
+                resultsExpenses =document.querySelector('#r_exp');
+                resultsDoubts =document.querySelector('#r_doubt');
+                remainingResults = document.querySelector('#remaining_res')
+                revenueHeader = document.getElementById('income');
+                allocationsHeader = document.getElementById('allocations');
+                resultsHeader = document.getElementById('results');
+                
+                
+                const updatePercentage = () =>{
+                    total = 100;
+                    allocationPercent.innerHTML = total - profitPercent.value - ownerPercent.value - 
+                        taxPercent.value - opsPercent.value - doubtPercent.value ;
+                    resultsAmount.innerText = (Number(allocationPercent.innerText) / 100) * userRevenue.value
+                }
+                
+                const validatePercentage = () =>{
+                    if (Number(allocationPercent.innerText) < 100 && (Number(allocationPercent.innerText)) > 0){
+                        remainingAllocations.innerText = 'Remaining'
+                        allocationsHeader.className = 'header_open rounded-lg';
+                        };
+                        if (Number(allocationPercent.innerText) < 0){
+                            remainingAllocations.innerText = 'Must Total 100';
+                            allocationsHeader.className = 'header_broken rounded-lg';
+                            };
+                            if (Number(allocationPercent.innerText) === 100 ){
+                                remainingAllocations.innerText = 'Remaining'
+                                allocationsHeader.className = 'header_open rounded-lg';
+                                };
+                                if (Number(allocationPercent.innerText) === 0){
+                                    remainingAllocations.innerText = 'Allocated'
+                                    allocationsHeader.className = 'header_closed rounded-lg';
+                                    };
+                                    if(Number(resultsAmount.innerText) === 0 ){
+                                        remainingResults.innerText = 'Allocated';
+                                        resultsHeader.className = 'header_closed rounded-lg';
+                                        };
+                                        if(Number(resultsAmount.innerText) === 0 && Number(allocationPercent.innerText == 0)){
+                                            remainingResults.innerText = 'Allocated';
+                                            resultsHeader.className = 'header_closed rounded-lg';
+                                            };
+                                            if(Number(resultsAmount.innerText) != 0){
+                                                remainingResults.innerText = 'Remaining';
+                                                resultsHeader.className = 'header_open rounded-lg';
+                                                };
+                        };
+                // FIX THE COLORS 
+                // ADD RESET BUTTON
+                const reset = () =>{
+                    userRevenue.innerHTML = 0;
+                    userIncome.value = 0;
+                    userExpenses.value = 0;
+                    profitPercent.value = 0;
+                    ownerPercent.value = 0;
+                    taxPercent.value = 0;
+                    opsPercent.value = 0;
+                    doubtPercent.value = 0;
+                    resultsProfit.innerText = 0;
+                    resultsOwner.innerText = 0;
+                    resultsTax.innerText = 0;
+                    resultsExpenses.innerText = 0;
+                    resultsDoubts.innerText = 0;
+                    revenueHeader.className = 'header_open rounded-lg'
+                    allocationsHeader.className = 'header_open rounded-lg'
+                    resultsHeader.className = 'header_open rounded-lg'
+                    remainingAllocations.innerText = 'Remaining'
+                    remainingResults.innerText = 'Allocated';
+                    resultsAmount.innerText = 0;
+                    remainingResults.innerText = 'Remaining';
+                };
+                
+                
+                
+                // ===========================================================
+                // ===========================INCOME==========================
+                // ===========================================================
+                
+                userIncome.onchange = updateRevenue = ()=>{
+                    userRevenue.value = Number(userIncome.value) ;
+                    userRevenue.innerHTML = userRevenue.value ;
+                    revenueHeader.className = 'header_closed rounded-lg';
+                    validatePercentage();
+                };
+                 
+                userExpenses.onchange = updateExpense = () =>{
+                    userRevenue.innerHTML = (Number(userIncome.value) - Number(userExpenses.value));
+                    validatePercentage();
+                };
+                
+                // ==============================================================
+                // ==============================================================
+                
+                
+                
+                // ==============================================================
+                // ===================ALLOCATIONS================================
+                // ==============================================================
+                
+                    
+                
+                profitPercent.onchange = subtractProfit = () =>{
+                    updatePercentage();
+                    resultsProfit.innerText = (profitPercent.value / 100) * Number(userRevenue.innerHTML);
+                    validatePercentage();
+                };
+                
+                ownerPercent.onchange = subractOwnerPay = () =>{
+                    updatePercentage();
+                    resultsOwner.innerText = (ownerPercent.value / 100) * Number(userRevenue.innerHTML);
+                    validatePercentage();
+                };
+                
+                taxPercent.onchange = subtractTax = () =>{
+                    updatePercentage();
+                    resultsTax.innerText = (taxPercent.value / 100) * Number(userRevenue.innerHTML);
+                    validatePercentage();
+                };
+                
+                opsPercent.onchange = subtractExpense = () =>{
+                    updatePercentage();
+                    resultsExpenses.innerText = (opsPercent.value / 100) * Number(userRevenue.innerHTML);
+                    validatePercentage();
+                }
+                
+                doubtPercent.onchange = subtractDoubt = () =>{
+                    updatePercentage();
+                    resultsDoubts.innerText = (doubtPercent.value / 100) * Number(userRevenue.innerHTML);
+                    validatePercentage();
+                }
+                
+                // ==============================================================
+                // ==============================================================
+                
+                
+        </script>                  
